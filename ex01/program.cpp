@@ -1,17 +1,9 @@
-#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <string>
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
-
-void printProperty(const std::string property) {
-    std::string toPrint =
-        property.length() >= 10 ? property.substr(0, 9) + "." : property;
-
-    std::cout << std::setw(10) << toPrint;
-}
 
 int handleIndexPrompt() {
     unsigned int i;
@@ -30,26 +22,10 @@ int handleIndexPrompt() {
     }
 }
 
-void handleSearch(PhoneBook &phoneBook) {
-    if (phoneBook.numberOfContacts == 0) {
-        std::cerr << "Contact list is empty\n";
-        return;
-    }
-
-    for (size_t i = 0; i < phoneBook.numberOfContacts; i++) {
-        Contact &contact = phoneBook.getContactByIndex(i);
-        std::cout << std::setw(10) << i;
-        std::cout << '|';
-        printProperty(contact.firstName);
-        std::cout << '|';
-        printProperty(contact.lastName);
-        std::cout << '|';
-        printProperty(contact.nickName);
-        std::cout << '\n';
-    }
-
+void handleSearch(const PhoneBook &phoneBook) {
+    phoneBook.printContactOverview();
     try {
-        int i = handleIndexPrompt();
+        unsigned int i = handleIndexPrompt();
 
         Contact &contact = phoneBook.getContactByIndex(i);
         contact.printContact();
@@ -77,9 +53,9 @@ void handleAdd(PhoneBook &phoneBook) {
     phoneNumber = getInput("Enter phone number:");
     secret = getInput("Enter secret:");
 
-    std::unique_ptr<Contact> newContact(
-        new Contact(firstName, lastName, nickName, phoneNumber, secret));
-    phoneBook.addContact(std::move(newContact));
+    auto newContact = std::make_unique<Contact>(firstName, lastName, nickName,
+                                                phoneNumber, secret);
+    phoneBook.addContact(newContact);
 }
 
 int main() {
@@ -88,8 +64,7 @@ int main() {
 
     std::cout << "Commands: ADD, SEARCH, EXIT\n";
     while (true) {
-        std::cout << "Enter command\n> ";
-        getline(std::cin, input);
+        input = getInput("Enter command");
         if (input == "EXIT") {
             break;
         } else if (input == "ADD") {

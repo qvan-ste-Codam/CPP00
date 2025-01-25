@@ -55,6 +55,7 @@ Account::~Account() {
 
 void Account::makeDeposit(int deposit) {
     int previousAmount = this->_amount;
+
     this->_amount += deposit;
     Account::_totalAmount += deposit;
     this->_nbDeposits++;
@@ -85,7 +86,6 @@ bool Account::makeWithdrawal(int withdrawal) {
               << "withdrawal:" << withdrawal << ";"
               << "amount:" << this->_amount << ";"
               << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
-
     return true;
 }
 
