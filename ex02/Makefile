@@ -3,12 +3,12 @@ ORANGE = \033[0;33m
 GREEN = \033[0;32m
 NO_COLOUR = \033[0m
 
-CFILES = program.cpp Contact.cpp PhoneBook.cpp
+CFILES = tests.cpp Account.cpp
 OFILES = $(CFILES:.cpp=.o)
 
 CXXFLAGS = -Wall -Werror -Wextra -std=c++20
 
-NAME = contacts
+NAME = tests
 
 all: $(NAME)
 

@@ -1,6 +1,6 @@
 #include "Contact.hpp"
 
-#include "iostream"
+#include <iostream>
 
 Contact::Contact(const std::string& fName, const std::string& lName,
                  const std::string& pNumber, const std::string& nName,
@@ -13,9 +13,9 @@ Contact::Contact(const std::string& fName, const std::string& lName,
 }
 
 void Contact::printContact() {
-    std::cout << this->firstName << std::endl;
-    std::cout << this->lastName << std::endl;
-    std::cout << this->phoneNumber << std::endl;
-    std::cout << this->nickName << std::endl;
-    std::cout << this->secret << std::endl;
+    std::cout << this->firstName << '\n';
+    std::cout << this->lastName << '\n';
+    std::cout << this->phoneNumber << '\n';
+    std::cout << this->nickName << '\n';
+    std::cout << this->secret << '\n';
 }
