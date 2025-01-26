@@ -29,6 +29,6 @@ void Contact::printOverview() const {
     auto lastName = getFormattedProperty(this->lastName);
     auto nickName = getFormattedProperty(this->nickName);
 
-    std::cout << std::setw(10) << firstName << '|' << lastName << '|'
-              << nickName << std::endl;
+    std::cout << std::setw(10) << firstName << '|' << std::setw(10) << lastName
+              << '|' << std::setw(10) << nickName << std::endl;
 }

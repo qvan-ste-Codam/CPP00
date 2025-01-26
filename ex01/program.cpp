@@ -14,7 +14,8 @@ int handleIndexPrompt() {
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input. Please enter a valid integer.\n";
+            std::cout << "Invalid input. Please enter a valid integer."
+                      << std::endl;
         } else {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             return i;
@@ -52,7 +53,6 @@ void handleAdd(PhoneBook &phoneBook) {
     nickName = getInput("Enter nick name:");
     phoneNumber = getInput("Enter phone number:");
     secret = getInput("Enter secret:");
-
     auto newContact = std::make_unique<Contact>(firstName, lastName, nickName,
                                                 phoneNumber, secret);
     phoneBook.addContact(newContact);
@@ -62,7 +62,7 @@ int main() {
     std::string input;
     PhoneBook phoneBook;
 
-    std::cout << "Commands: ADD, SEARCH, EXIT\n";
+    std::cout << "Commands: ADD, SEARCH, EXIT" << std::endl;
     while (true) {
         input = getInput("Enter command");
         if (input == "EXIT") {
